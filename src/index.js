@@ -7,18 +7,16 @@ import SearchBar from './components/search_bar'
 
 const API_KEY = 'AIzaSyBfXK51W99oeqZCnyBRUDP7ZuoUBpSrL6s';
 
-YTSearch({key: API_KEY, term: 'entrepreneurs'}, function(data){
-  console.log(data);
-})
-
-// Changing the App component from functional component to a class-based component due to
-// state that will change from the data coming from Youtube.
-
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = { videos: [] }
+
+    YTSearch({key: API_KEY, term: 'entrepreneurs'}, (videos) => {
+      // ES6 feature, when the key and property name are the same remove repetitive name value
+      this.setState({ videos });
+    })
   }
   render() {
     return (
