@@ -13,11 +13,9 @@ const VideoList = (props) => {
     marginTop: '10px'
   }
   return (
-    <div className="row">
-      <ul className="col-md-12" style={ulStyle}>
+      <ul className="col-md-4" style={ulStyle}>
         {videoItems}
       </ul>
-    </div>
   )
 }
 

@@ -18,18 +18,24 @@ class App extends Component {
       selectedVideo: null,
      }
 
-    YTSearch({key: API_KEY, term: 'entrepreneurs'}, (videos) => {
-      // ES6 feature, when the key and property name are the same remove repetitive name value
-      this.setState({
-        videos: videos,
-        selectedVideo: videos[0]
-       });
-    })
-  }
+     this.videoSearch('soccer');
+
+   }
+
+   videoSearch(term){
+     YTSearch({key: API_KEY, term: term}, (videos) => {
+       // ES6 feature, when the key and property name are the same remove repetitive name value
+       this.setState({
+         videos: videos,
+         selectedVideo: videos[0]
+        });
+     })
+   }
+
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           videos={this.state.videos}
