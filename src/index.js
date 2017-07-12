@@ -13,19 +13,28 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] }
+    this.state = {
+      videos: [],
+      selectedVideo: null,
+     }
 
     YTSearch({key: API_KEY, term: 'entrepreneurs'}, (videos) => {
       // ES6 feature, when the key and property name are the same remove repetitive name value
-      this.setState({ videos });
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+       });
     })
   }
   render() {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos={this.state.videos}/>
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList
+          videos={this.state.videos}
+          onVideoSelect={selectedVideo => this.setState({ selectedVideo })} // Passing as props. This function manipulates another comp.
+        />
       </div>
     )
   }

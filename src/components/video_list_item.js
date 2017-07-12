@@ -1,17 +1,18 @@
 import React from 'react';
 
-const VideoListItem = ({video}) => {
+const VideoListItem = ({video, onVideoSelect}) => {
   // using ES6 goodies {video} as props
   // accessing props from video_list.js. see VideoListItem in video_list.js
   // const video = props.video;
+  // const onVideoSelect = props.onVideoSelect;
   // console.log(video);
-  const imageUrl = video.snippet.thumbnails.default.url;
+  const imageUrl = video.snippet.thumbnails.default.url;  
 
   return (
-    <li className="list-group-item">
+    <li onClick={ () => onVideoSelect(video) } className="list-group-item">
       <div className="video-list media">
         <div className="media-left">
-          <img className="media-object" src="{imageUrl}" />
+          <img className="media-object" src={imageUrl} />
         </div>
         <div className="media-right">
           <div className="media-heading">
@@ -19,7 +20,6 @@ const VideoListItem = ({video}) => {
           </div>
         </div>
       </div>
-
     </li>
   );
 }
