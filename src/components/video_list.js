@@ -9,11 +9,15 @@ const VideoList = (props) => {
       onVideoSelect={props.onVideoSelect} // props from VideoList in index.js
     />
   });
-
+  const ulStyle = {
+    marginTop: '10px'
+  }
   return (
-    <ul className="col-md-6 list-group">
-      {videoItems}
-    </ul>
+    <div className="row">
+      <ul className="col-md-12" style={ulStyle}>
+        {videoItems}
+      </ul>
+    </div>
   )
 }
 
