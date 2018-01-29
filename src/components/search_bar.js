@@ -8,28 +8,30 @@ import ReactDOM from 'react-dom';
 
 //* Class component
 class SearchBar extends React.Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
-      term: ' Jujuba'
+      term: ''
     }
+    console.log(props);
   }
 
   render() {
     return (
       <div>
-        <input
-          value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })}
-        />
+        <div className="search-bar col-md-12">
+          <input
+            value={this.state.term}
+            onChange={event => this.onInputChange(event.target.value)}
+          />
+        </div>
       </div>
     );
   }
 
-  onInputChange = (event) => {
-
+  onInputChange(term) {
+    this.setState({ term });
+    this.props.onSearchTermChange(term);
   }
 
 }
